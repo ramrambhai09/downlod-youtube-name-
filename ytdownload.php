@@ -1,60 +1,53 @@
-this is a youtube video downlod php code
-
 <?php
 if (isset($_POST['submit'])) {
-    $videoUrl = $_POST['video_url']; // Form se video URL lein
+    $videoUrl = $_POST['video_url'];
 
-    // URL ko sanitize karna
-    $videoUrl = escapeshellarg($videoUrl);
+    // Sanitize the input URL
+    $sanitizedUrl = escapeshellarg($videoUrl);
 
     // Output directory
     $outputDir = "downloads/";
     if (!file_exists($outputDir)) {
-        mkdir($outputDir, 0777, true); // Agar directory nahi hai, toh banayein
+        mkdir($outputDir, 0777, true);
     }
 
-    // File ka naam hash se banayein (MD5) for security
-    $fileHash = md5($videoUrl . time()); // Video URL aur current time se unique hash generate karna
-    $outputFile = $outputDir . $fileHash . ".mp4"; // Video file ka path
+    // Create unique file name using MD5
+    $fileHash = md5($videoUrl . time());
+    $outputFile = $outputDir . $fileHash . ".mp4";
 
-    // Check if it's a YouTube URL or Instagram URL
-    $ytDlpPath = "\"D:/crome downlod/yt-dlp.exe\""; // Path to yt-dlp tool
+    // Paths to tools
+    $ytDlpPath = "\"D:/crome downlod/yt-dlp.exe\"";
+    $instaloaderPath = "\"D:/path/to/instaloader.exe\"";
+
+    // Decide the download command
     if (strpos($videoUrl, 'youtube.com') !== false || strpos($videoUrl, 'youtu.be') !== false) {
-        // YouTube video download command using yt-dlp
-        $command = "$ytDlpPath -o " . escapeshellarg($outputFile) . " " . $videoUrl;
+        $command = "$ytDlpPath -o " . escapeshellarg($outputFile) . " " . $sanitizedUrl;
     } elseif (strpos($videoUrl, 'instagram.com') !== false) {
-        // Instagram video download command (using Instaloader or other tool)
-        $instaloaderPath = "\"D:/path/to/instaloader.exe\""; // Path to Instaloader
-        $command = "$instaloaderPath --download-video --no-posts --no-profile-pic --no-captions " . escapeshellarg($videoUrl);
+        $command = "$instaloaderPath --dirname-pattern=$outputDir -- - " . $sanitizedUrl;
+        // Note: Instaloader doesn’t save as .mp4 directly like yt-dlp, different handling needed
     } else {
         echo "Invalid URL. Only YouTube and Instagram videos are supported.";
         exit;
     }
 
-    // Execute command
+    // Execute the download command
     exec($command . " 2>&1", $output, $returnVar);
 
-    // Check if download was successful
-    if ($returnVar === 0) {
-        // Headers set for direct download
+    if ($returnVar === 0 && file_exists($outputFile)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="' . basename($outputFile) . '"');
         header('Content-Transfer-Encoding: binary');
-        header('Coxntent-Length: ' . filesize($outputFile));
+        header('Content-Length: ' . filesize($outputFile)); // ✅ Typo fixed: Coxntent-Length → Content-Length
 
-        // Clear previous output and flush buffer
         ob_clean();
         flush();
-
-        // Send file to the user
         readfile($outputFile);
         exit;
     } else {
-        // If error occurs
         echo "Error occurred while downloading the video.<br>";
-        echo "Command: $command<br>";
-        echo "Output: " . implode("<br>", $output);
+        echo "<strong>Command:</strong> $command<br>";
+        echo "<strong>Output:</strong><br>" . implode("<br>", $output);
     }
 }
 ?>
