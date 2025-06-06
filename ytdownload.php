@@ -1,53 +1,173 @@
 <?php
-if (isset($_POST['submit'])) {
-    $videoUrl = $_POST['video_url'];
+if (isset($_POST['video_url'])) {
+    $videoUrl = escapeshellarg($_POST['video_url']);
+    $downloadFolder = __DIR__ . '/downloads';
 
-    // Sanitize the input URL
-    $sanitizedUrl = escapeshellarg($videoUrl);
+    // Add ffmpeg path to PATH
+    putenv('PATH=' . __DIR__ . '/ffmpeg-7.1.1/bin;' . getenv('PATH'));
 
-    // Output directory
-    $outputDir = "downloads/";
-    if (!file_exists($outputDir)) {
-        mkdir($outputDir, 0777, true);
+    $command = "yt-dlp -q --no-warnings -o \"$downloadFolder/%(title)s.%(ext)s\" $videoUrl 2>&1";
+    $output = shell_exec($command);
+
+    $files = glob("$downloadFolder/*");
+    $latest_file = '';
+
+    if (count($files) > 0) {
+        usort($files, function($a, $b) {
+            return filemtime($b) - filemtime($a);
+        });
+        $latest_file = $files[0];
     }
 
-    // Create unique file name using MD5
-    $fileHash = md5($videoUrl . time());
-    $outputFile = $outputDir . $fileHash . ".mp4";
+    echo '<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ClickTube - YouTube Video Downloader</title>
+        <style>
+            body {
+                font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #f5f5f5;
+                margin: 0;
+                padding: 0;
+            }
+            .header {
+                background-color: #0f0f0f;
+                color: white;
+                padding: 30px 20px;
+                text-align: center;
+            }
+            .header h1 {
+                margin: 0;
+                font-size: 28px;
+            }
+            .header p {
+                margin: 10px 0 0;
+                opacity: 0.8;
+                font-size: 16px;
+            }
+            .container {
+                max-width: 800px;
+                margin: 30px auto;
+                padding: 0 20px;
+            }
+            .section {
+                background-color: white;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 20px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            h2 {
+                color: #333;
+                margin-top: 0;
+                font-size: 20px;
+            }
+            pre {
+                background-color: #f8f8f8;
+                padding: 15px;
+                border-radius: 5px;
+                overflow-x: auto;
+                font-family: \'Consolas\', \'Monaco\', monospace;
+                color: #333;
+            }
+            .download-btn {
+                display: inline-block;
+                background-color: #065fd4;
+                color: white;
+                padding: 12px 24px;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                transition: background-color 0.3s;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+            .download-btn:hover {
+                background-color: #0553ba;
+            }
+            .error {
+                color: #d32f2f;
+                font-weight: bold;
+            }
+            .footer {
+                text-align: center;
+                margin-top: 30px;
+                color: #666;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Download Videos from YouTube</h1>
+            <p>The fastest, most reliable way to download videos from YouTube, Instagram and more. High quality, no watermarks, completely free.</p>
+        </div>
 
-    // Paths to tools
-    $ytDlpPath = "\"D:/crome downlod/yt-dlp.exe\"";
-    $instaloaderPath = "\"D:/path/to/instaloader.exe\"";
+        <div class="container">';
 
-    // Decide the download command
-    if (strpos($videoUrl, 'youtube.com') !== false || strpos($videoUrl, 'youtu.be') !== false) {
-        $command = "$ytDlpPath -o " . escapeshellarg($outputFile) . " " . $sanitizedUrl;
-    } elseif (strpos($videoUrl, 'instagram.com') !== false) {
-        $command = "$instaloaderPath --dirname-pattern=$outputDir -- - " . $sanitizedUrl;
-        // Note: Instaloader doesn’t save as .mp4 directly like yt-dlp, different handling needed
+    if ($output) {
+        echo '<div class="section">
+                <h2>Download Log</h2>
+                <pre>' . htmlspecialchars($output) . '</pre>
+              </div>';
+    }
+
+    if ($latest_file) {
+        $downloadLink = 'downloads/' . basename($latest_file);
+        echo '<div class="section" style="text-align: center;">
+                <h2>Download Ready</h2>
+                <a href="' . $downloadLink . '" download class="download-btn">Download</a>
+              </div>';
     } else {
-        echo "Invalid URL. Only YouTube and Instagram videos are supported.";
-        exit;
+        echo '<div class="section">
+                <p class="error">❌ Download failed. Please try again.</p>
+              </div>';
     }
 
-    // Execute the download command
-    exec($command . " 2>&1", $output, $returnVar);
+    echo '</div>
+          <div class="footer">
+            By using ClickTube, you agree to our Terms of Service.
+          </div>
+    </body>
+    </html>';
 
-    if ($returnVar === 0 && file_exists($outputFile)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="' . basename($outputFile) . '"');
-        header('Content-Transfer-Encoding: binary');
-        header('Content-Length: ' . filesize($outputFile)); // ✅ Typo fixed: Coxntent-Length → Content-Length
-
-        ob_clean();
-        flush();
-        readfile($outputFile);
-        exit;
-    } else {
-        echo "Error occurred while downloading the video.<br>";
-        echo "<strong>Command:</strong> $command<br>";
-        echo "<strong>Output:</strong><br>" . implode("<br>", $output);
-    }
+} else {
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Error</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f5f5f5;
+            }
+            .error-box {
+                background-color: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                text-align: center;
+            }
+            .error {
+                color: #d32f2f;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="error-box">
+            <p class="error">❌ Invalid request.</p>
+        </div>
+    </body>
+    </html>';
 }
 ?>
