@@ -1,1234 +1,915 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <script src="script.js" defer></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClickTube - Premium Video Downloader</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <title>ClickTube Video Downloader</title>
-  <style>
-    html, body { margin: 0; padding: 0; height: 100%; }
-
-
-
-
-
-
-    @keyframes showHeader {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-header {
-    animation: showHeader 1s ease-out forwards;
-}
-
-
-
-
-
-
-
-
-
-    
-/* Glow effect on hover */
-.text-center .w-12:hover {
-    box-shadow: 0 0 15px rgba(140, 153, 2, 0.7); /* Purple glow */
-    transition: box-shadow 0.3s ease;
-}
-
-/* Reset glow for all buttons when not hovering */
-.text-center .w-12 {
-    box-shadow: none;
-}
-
-
-
-
-
-  </style>
-
-
-
- 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Boxicons CSS -->
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0f13;
+      color: #f8f8f8;
+      scroll-behavior: smooth;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #1e1e2a, #2a2a3a);
+    }
+    
+    .glow-on-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .glow-on-hover:hover {
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.7);
+    }
+    
+    .platform-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .platform-icon:hover {
+      transform: translateY(-5px);
+    }
+    
+    .slide-in {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in {
+      animation: fadeIn 1s ease-in forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .feature-card {
+      transition: all 0.3s ease;
+      background: rgba(30, 30, 42, 0.6);
+      backdrop-filter: blur(10px);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .quality-card {
+      transition: all 0.3s ease;
+      background: rgba(30, 30, 42, 0.6);
+    }
+    
+    .quality-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    .faq-item {
+      transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+      background: rgba(46, 46, 60, 0.6);
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="antialiased">
 
-<!-- Sliding Sidebar -->
-<div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-neutral-800 transform -translate-x-full transition-transform duration-300 shadow-lg flex flex-col justify-between z-50">
-    <!-- Sidebar Content -->
-    <div>
-      <div class="p-6">
-        <h1 class="text-2xl font-bold text-white">ClickTube</h1>
-        <button id="close-button" class="absolute top-4 right-4 text-2xl">
-          <i class='bx bx-x'></i>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+<!-- 🔄 Loading Animation Start -->
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+<div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
+  <dotlottie-player
+    src="https://lottie.host/2be15f4e-a304-464c-ba3b-16ca69c2c287/aG1z7sVWJa.lottie"
+    background="transparent"
+    speed="1"
+    style="width: 300px; height: 300px"
+    loop
+    autoplay
+  ></dotlottie-player>
+</div>
+<script>
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 500);
+  });
+</script>
+<!-- 🔄 Loading Animation End -->
+
+<!-- 🔽 Your Website Content Starts Here -->
+<div class="main-site-content">
+  <!-- your actual page content -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Navigation -->
+  <nav x-data="{ open: false }" class="fixed w-full z-50 gradient-bg border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <span class="text-2xl font-bold gradient-text">ClickTube</span>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a href="#home" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-800 transition">Home</a>
+              <a href="#features" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Features</a>
+              <a href="#how-it-works" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">How It Works</a>
+              <a href="#platforms" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">Platforms</a>
+              <a href="#faq" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition">FAQ</a>
+            </div>
+          </div>
+        </div>
+        <div class="hidden md:block">
+
+
+
+
+
+<button class="instagram-button" onclick="window.location.href='instagram.html'">
+        
+
+<dotlottie-player 
+  src="https://lottie.host/baf7b8aa-ac16-4bb4-b4fb-3d665bd43054/P6KmIbn9iy.lottie" 
+  background="transparent" 
+  speed="1" 
+  style="width: 20px; height: 20px" 
+  loop 
+  autoplay>
+</dotlottie-player>
+
+
+
+
+  
+
+          </div>
+        </div>
+        <div class="-mr-2 flex md:hidden">
+          <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+            <svg class="h-6 w-6" :class="{ 'hidden': open, 'block': !open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg class="h-6 w-6" :class="{ 'hidden': !open, 'block': open }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div x-show="open" class="md:hidden">
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-gray-800">Home</a>
+        <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Features</a>
+        <a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">How It Works</a>
+        <a href="#platforms" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">Platforms</a>
+        <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800">FAQ</a>
+        <button class="w-full bg-gradient-to-r from-purple-600 to-pink-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition mt-2">
+          Get Started
         </button>
       </div>
-      <div class="p-6">
-        <ul>
-          <li><a href="#download" class="block py-2 text-neutral-300 hover:text-white">Download</a></li>
-          <li><a href="#platforms" class="block py-2 text-neutral-300 hover:text-white">Platforms</a></li>
-          <li><a href="#features" class="block py-2 text-neutral-300 hover:text-white">Features</a></li>
-          <li><a href="#process" class="block py-2 text-neutral-300 hover:text-white">Process</a></li>
-          <li><a href="#quality" class="block py-2 text-neutral-300 hover:text-white">Quality</a></li>
-          <li><a href="#faq" class="block py-2 text-neutral-300 hover:text-white">FAQ</a></li>
-        </ul>
-      </div>
     </div>
-  
-    <!-- User Section -->
-    <div class="p-6 border-t border-neutral-700/30">
-      <div class="flex items-center">
-        <img src="https://avatar.iran.liara.run/public" alt="User" class="w-10 h-10 rounded-full"/>
-        <div class="ml-3">
-          <p class="text-sm font-medium text-white">Guest User</p>
-          <p class="text-xs text-neutral-400">guest@ClickTube.com</p>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+          <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl slide-in">
+            <span class="block">Download Videos from</span>
+            <span class="block gradient-text">YouTube</span>
+          </h1>
+          <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0 fade-in">
+            The fastest, most reliable way to download videos from YouTube, Instagra and more. High quality, no watermarks, completely free.
+          </p>
+          <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0 fade-in">
+            <div class="relative">
+              <form action="ytdownload.php" method="post" class="flex">
+                <input type="text" name="video_url" placeholder="Paste video URL here" required class="w-full px-5 py-4 rounded-l-lg bg-gray-800 border border-gray-700 focus:border-purple-500 focus:ring-purple-500 text-white placeholder-gray-400 transition">
+                <button type="submit" name="submit" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-4 rounded-r-lg font-medium hover:opacity-90 transition">
+                  Download
+                </button>
+              </form>
+            </div>
+            <p class="mt-3 text-sm text-gray-400">
+              By using ClickTube, you agree to our Terms of Service.
+            </p>
+          </div>
+        </div>
+        <!-- 🔹 DotLottie Script (keep this once in your <head> or before closing body) -->
+<script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 🔻 Main Hash Container with Animation -->
+<div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+  <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+    <div class="relative overflow-hidden rounded-lg glow-on-hover" style="background: linear-gradient(135deg, #2a2a3a, #1e1e2a);">
+      <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-500 opacity-10"></div>
+      <div class="relative px-8 py-12">
+        <div class="flex items-center justify-center h-64">
+          <div class="text-center">
+            <!-- 🔁 Replaced Icon with Lottie -->
+            <dotlottie-player
+              src="https://lottie.host/8d3bdc1d-1293-45a2-bb48-0398ecf532ba/GsLlL13NZC.lottie"
+              background="transparent"
+              speed="1"
+              style="width: 300px; height: 300px; margin: auto;"
+              loop
+              autoplay
+            ></dotlottie-player>
+
+            
+          </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
-  
-<!-- Button to Open Sidebar -->
-<button id="menu-button" class="absolute top-0 left-0 text-4xl p-3 bg-neutral-0 rounded-full z-50">
-  <i class='bx bx-menu'></i>
-</button>
-  
-<!-- Overlay -->
-<div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"></div>
-  
-<!-- JavaScript -->
-<script>
-  const menuButton = document.getElementById("menu-button");
-  const closeButton = document.getElementById("close-button");
-  const overlay = document.getElementById("overlay");
-  const sidebar = document.getElementById("sidebar");
-
-  // Open Sidebar
-  menuButton.addEventListener("click", () => {
-    sidebar.classList.remove("-translate-x-full");
-    overlay.classList.remove("hidden");
-  });
-
-  // Close Sidebar
-  closeButton.addEventListener("click", () => {
-    sidebar.classList.add("-translate-x-full");
-    overlay.classList.add("hidden");
-  });
-
-  overlay.addEventListener("click", () => {
-    sidebar.classList.add("-translate-x-full");
-    overlay.classList.add("hidden");
-  });
-
-  // Close sidebar when clicking on sidebar links
-  document.querySelectorAll("#sidebar a").forEach((link) => {
-    link.addEventListener("click", () => {
-      sidebar.classList.add("-translate-x-full");
-      overlay.classList.add("hidden");
-    });
-  });
-</script>
 
 
 
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Get all navigation links
-    const navLinks = document.querySelectorAll('nav a');
+
+
+
+
+
+
+      </div>
+    </div>
     
-    // Function to update active state
-    function updateActiveLink() {
-        const hash = window.location.hash || '#download';
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === hash) {
-                link.classList.add('active', 'bg-neutral-700/30', 'text-white');
-            } else {
-                link.classList.remove('active', 'bg-neutral-700/30', 'text-white');
-            }
-        });
-    }
+    <!-- Scroll indicator -->
+    <div class="mt-20 text-center scroll-indicator">
+      <a href="#features" class="inline-block">
+        <i class='bx bx-chevron-down text-3xl text-gray-400 hover:text-white transition'></i>
+      </a>
+    </div>
+  </section>
 
-    // Add click handlers to navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            navLinks.forEach(l => l.classList.remove('active', 'bg-neutral-700/30', 'text-white'));
-            link.classList.add('active', 'bg-neutral-700/30', 'text-white');
-        });
-    });
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', updateActiveLink);
-    
-    // Set initial active state
-    updateActiveLink();
-});
-</script>
-</htmlCode></section>
+  <!-- Supported Platforms -->
+  <section id="platforms" class="py-20 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl slide-in">
+          <span class="block">Supported</span>
+          <span class="block gradient-text">Platforms</span>
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300 sm:mt-4 fade-in">
+          Download videos from all major platforms with just one click
+        </p>
+      </div>
 
 
 
 
 
+      
 
-<section id="section-6d0c8a6a-8ccf-48aa-8517-9bde2dcb4e0b"><htmlCode>
-<section id="navbar_hero" class="min-h-screen bg-neutral-900 relative overflow-hidden">
+      <<div class="mt-16 flex justify-center gap-8 flex-wrap">
+  <!-- YouTube -->
+  <div class="platform-icon pt-6 pb-8 px-6 text-center rounded-xl bg-gray-800 hover:bg-gray-700 transition cursor-pointer">
+    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-500/10">
+      <i class='bx bxl-youtube text-3xl text-red-500'></i>
+    </div>
+    <h3 class="mt-6 text-lg font-medium text-white">YouTube</h3>
+    <p class="mt-2 text-sm text-gray-400">Videos, Shorts, Playlists</p>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- Instagram -->
+  <div class="platform-icon pt-6 pb-8 px-6 text-center rounded-xl bg-gray-800 hover:bg-gray-700 transition cursor-pointer">
+    <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-pink-500/10">
+      <i class='bx bxl-instagram text-3xl text-pink-500'></i>
+    </div>
+    <h3 class="mt-6 text-lg font-medium text-white">Instagram</h3>
+    <p class="mt-2 text-sm text-gray-400">Reels, Stories, Posts</p>
+  </div>
+</div>
 
 
+        <!-- TikTok
+        <div class="platform-icon pt-6 pb-8 px-6 text-center rounded-xl bg-gray-800 hover:bg-gray-700 transition cursor-pointer">
+          <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-black/10">
+            <i class='bx bxl-tiktok text-3xl text-black dark:text-white'></i>
+          </div>
+          <h3 class="mt-6 text-lg font-medium text-white">TikTok</h3>
+          <p class="mt-2 text-sm text-gray-400">Videos, Sounds</p>
+        </div>
 
+            witter 
+        <div class="platform-icon pt-6 pb-8 px-6 text-center rounded-xl bg-gray-800 hover:bg-gray-700 transition cursor-pointer">
+          <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-500/10">
+            <i class='bx bxl-twitter text-3xl text-blue-500'></i>
+          </div>
+          <h3 class="mt-6 text-lg font-medium text-white">Twitter</h3>
+          <p class="mt-2 text-sm text-gray-400">Videos, GIFs, Threads</p>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
+  
 
+  <!-- Features -->
+  <section id="features" class="py-20 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl slide-in">
+          <span class="block">Powerful</span>
+          <span class="block gradient-text">Features</span>
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300 sm:mt-4 fade-in">
+          Everything you need for seamless video downloads
+        </p>
+      </div>
 
+      <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Feature 1 -->
+        <div class="feature-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500/10 text-purple-500">
+            <i class='bx bx-cloud-download text-2xl'></i>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold text-white">Lightning Fast</h3>
+          <p class="mt-2 text-gray-400">
+            Download videos at maximum speed with our optimized servers. No waiting, no delays.
+          </p>
+        </div>
 
+        <!-- Feature 2 -->
+        <div class="feature-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500/10 text-purple-500">
+            <i class='bx bx-hd text-2xl'></i>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold text-white">Highest Quality</h3>
+          <p class="mt-2 text-gray-400">
+            Get videos in up to 4K resolution with original audio quality preserved.
+          </p>
+        </div>
 
+        <!-- Feature 3 -->
+        <div class="feature-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500/10 text-purple-500">
+            <i class='bx bx-shield text-2xl'></i>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold text-white">Privacy Focused</h3>
+          <p class="mt-2 text-gray-400">
+            We don't store your data or track your downloads. Your privacy is our priority.
+          </p>
+        </div>
 
+        <!-- Feature 4 -->
+        <div class="feature-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500/10 text-purple-500">
+            <i class='bx bx-music text-2xl'></i>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold text-white">MP3 Conversion</h3>
+          <p class="mt-2 text-gray-400">
+            Extract audio from videos and save as high-quality MP3 files.
+          </p>
+        </div>
 
+        <!-- Feature 5 -->
+        <div class="feature-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500/10 text-purple-500">
+            <i class='bx bx-layer text-2xl'></i>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold text-white">Batch Downloads</h3>
+          <p class="mt-2 text-gray-400">
+            Download multiple videos at once with our batch processing feature.
+          </p>
+        </div>
 
+        <!-- Feature 6 -->
+        <div class="feature-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500/10 text-purple-500">
+            <i class='bx bx-devices text-2xl'></i>
+          </div>
+          <h3 class="mt-6 text-xl font-semibold text-white">No Watermarks</h3>
+          <p class="mt-2 text-gray-400">
+            Get clean videos without any platform watermarks or branding.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-
-
-
-
-
-
-
-
-
-    <!-- Header -->
-    <header class="fixed top-0 right-0 left-0 lg:left-0 bg-neutral-800 border-b border-neutral-700/30 z-40">
-        <div class="px-4 sm:px-6 lg:px-8 py-4">
-            <div class="flex items-center justify-between">
-                <h2 class="text-xl font-semibold text-white">ClickTube</h2>
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-20 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-5">
+          <div class="text-center lg:text-left">
+            <h2 class="text-3xl font-extrabold text-white sm:text-4xl slide-in">
+              <span class="block">How It</span>
+              <span class="block gradient-text">Works</span>
+            </h2>
+            <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300 sm:mt-4 fade-in">
+              Downloading videos has never been easier. Just follow these simple steps:
+            </p>
+          </div>
+        </div>
+        
+        <div class="mt-12 lg:mt-0 lg:col-span-7">
+          <div class="bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
+            <div class="px-6 py-8">
+              <div class="space-y-8">
+                <!-- Step 1 -->
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-500 text-white font-bold">
+                      1
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <h3 class="text-lg font-medium text-white">Copy the video URL</h3>
+                    <p class="mt-2 text-gray-400">
+                      Find the video you want to download on your favorite platform and copy its link.
+                    </p>
+                  </div>
+                </div>
                 
-                <!-- Search Bar -->
-                <div class="hidden md:flex items-center flex-1 max-w-md mx-4">
-                    <div class="relative w-full">
-                        <input type="text" placeholder="Search..." class="w-full bg-neutral-700/30 border border-neutral-700/30 rounded-lg py-2 px-4 text-white placeholder-neutral-400 focus:outline-none focus:border-purple-500 transition-colors"/>
+                <!-- Step 2 -->
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-500 text-white font-bold">
+                      2
                     </div>
+                  </div>
+                  <div class="ml-4">
+                    <h3 class="text-lg font-medium text-white">Paste it in ClickTube</h3>
+                    <p class="mt-2 text-gray-400">
+                      Paste the URL into the download box at the top of this page.
+                    </p>
+                  </div>
                 </div>
-
-                <!-- Right Side Icons -->
-                <div class="flex items-center space-x-4">
-                    <button class="text-neutral-400 hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-                        </svg>
-                    </button>
-                    <button class="text-neutral-400 hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </button>
+                
+                <!-- Step 3 -->
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-500 text-white font-bold">
+                      3
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <h3 class="text-lg font-medium text-white">Choose your format</h3>
+                    <p class="mt-2 text-gray-400">
+                      Select your preferred quality and format (MP4, MP3, etc.).
+                    </p>
+                  </div>
                 </div>
+                
+                <!-- Step 4 -->
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-purple-500 text-white font-bold">
+                      4
+                    </div>
+                  </div>
+                  <div class="ml-4">
+                    <h3 class="text-lg font-medium text-white">Download & enjoy</h3>
+                    <p class="mt-2 text-gray-400">
+                      Click download and your video will be saved to your device instantly.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <div class="pt-24 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-                Download Videos from <span class="text-purple-500">YouTube Platform</span>
-            </h1>
-            <p class="text-lg sm:text-xl text-neutral-400 mb-12">
-                Your one-stop solution for downloading videos from YouTube, Instagram, LinkedIn, and Twitter. Fast, secure, and completely free!
-            </p>
+  <!-- Quality Options -->
+  <section class="py-20 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl slide-in">
+          <span class="block">Quality</span>
+          <span class="block gradient-text">Options</span>
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300 sm:mt-4 fade-in">
+          Choose the perfect quality for your needs
+        </p>
+      </div>
+
+      <div class="mt-16 flex justify-center flex-wrap gap-8">
+  <!-- 360p -->
+  <div class="quality-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+    <div class="flex justify-between items-center">
+      <h3 class="text-2xl font-bold text-white">360p</h3>
+      <span class="px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-500">Basic</span>
+    </div>
+    <p class="mt-4 text-gray-400">Good for mobile viewing</p>
+    <div class="mt-6">
+      <div class="flex items-center">
+        <i class='bx bx-check text-purple-500 mr-2'></i>
+        <span class="text-gray-300">Small file size</span>
+      </div>
+      <div class="flex items-center mt-3">
+        <i class='bx bx-check text-purple-500 mr-2'></i>
+        <span class="text-gray-300">Fast downloads</span>
+      </div>
+      <div class="flex items-center mt-3">
+        <i class='bx bx-check text-purple-500 mr-2'></i>
+        <span class="text-gray-300">Data friendly</span>
+      </div>
+    </div>
+    <div class="mt-8 text-sm text-gray-400">
+      ~10MB per hour
+    </div>
+  </div>
+
+  <!-- 720p -->
+  <div class="quality-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+    <div class="flex justify-between items-center">
+      <h3 class="text-2xl font-bold text-white">720p</h3>
+      <span class="px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-500">HD</span>
+    </div>
+    <p class="mt-4 text-gray-400">Great for most screens</p>
+    <div class="mt-6">
+      <div class="flex items-center">
+        <i class='bx bx-check text-purple-500 mr-2'></i>
+        <span class="text-gray-300">HD quality</span>
+      </div>
+      <div class="flex items-center mt-3">
+        <i class='bx bx-check text-purple-500 mr-2'></i>
+        <span class="text-gray-300">Balanced size</span>
+      </div>
+      <div class="flex items-center mt-3">
+        <i class='bx bx-check text-purple-500 mr-2'></i>
+        <span class="text-gray-300">Most popular</span>
+      </div>
+    </div>
+    <div class="mt-8 text-sm text-gray-400">
+      ~25MB per hour
+    </div>
+  </div>
+</div>
+
+
+        <!-- 1080p
+        <div class="quality-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex justify-between items-center">
+            <h3 class="text-2xl font-bold text-white">1080p</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-500">Full HD</span>
+          </div>
+          <p class="mt-4 text-gray-400">Excellent clarity</p>
+          <div class="mt-6">
+            <div class="flex items-center">
+              <i class='bx bx-check text-purple-500 mr-2'></i>
+              <span class="text-gray-300">Full HD</span>
+            </div>
+            <div class="flex items-center mt-3">
+              <i class='bx bx-check text-purple-500 mr-2'></i>
+              <span class="text-gray-300">Sharp details</span>
+            </div>
+            <div class="flex items-center mt-3">
+              <i class='bx bx-check text-purple-500 mr-2'></i>
+              <span class="text-gray-300">Premium quality</span>
+            </div>
+          </div>
+          <div class="mt-8 text-sm text-gray-400">
+            ~50MB per hour
+          </div>
+        </div>
+
+         4K 
+        <div class="quality-card pt-8 pb-10 px-8 rounded-xl border border-gray-800">
+          <div class="flex justify-between items-center">
+            <h3 class="text-2xl font-bold text-white">4K</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-medium bg-purple-500/10 text-purple-500">Ultra HD</span>
+          </div>
+          <p class="mt-4 text-gray-400">Best for large screens</p>
+          <div class="mt-6">
+            <div class="flex items-center">
+              <i class='bx bx-check text-purple-500 mr-2'></i>
+              <span class="text-gray-300">Ultra HD</span>
+            </div>
+            <div class="flex items-center mt-3">
+              <i class='bx bx-check text-purple-500 mr-2'></i>
+              <span class="text-gray-300">Maximum detail</span>
+            </div>
+            <div class="flex items-center mt-3">
+              <i class='bx bx-check text-purple-500 mr-2'></i>
+              <span class="text-gray-300">Professional use</span>
+            </div>
+          </div>
+          <div class="mt-8 text-sm text-gray-400">
+            ~100MB per hour
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl slide-in">
+          <span class="block">Frequently Asked</span>
+          <span class="block gradient-text">Questions</span>
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300 sm:mt-4 fade-in">
+          Everything you need to know about ClickTube
+        </p>
+      </div>
+
+      <div class="mt-16 max-w-3xl mx-auto space-y-4">
+        <!-- FAQ Item 1 -->
+        <div x-data="{ open: false }" class="faq-item bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
+          <button @click="open = !open" class="w-full px-6 py-5 text-left focus:outline-none">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-medium text-white">Is ClickTube free to use?</h3>
+              <svg class="w-5 h-5 text-purple-500 transform transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </button>
+          <div x-show="open" x-collapse class="px-6 pb-5 text-gray-400">
+            Yes, ClickTube is completely free to use. There are no hidden fees or subscriptions. You can download unlimited videos at no cost.
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div x-data="{ open: false }" class="faq-item bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
+          <button @click="open = !open" class="w-full px-6 py-5 text-left focus:outline-none">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-medium text-white">What platforms does ClickTube support?</h3>
+              <svg class="w-5 h-5 text-purple-500 transform transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </button>
+          <div x-show="open" x-collapse class="px-6 pb-5 text-gray-400">
+            ClickTube supports YouTube, Instagram, TikTok, Twitter, Facebook, and many other platforms. We're constantly adding support for new platforms.
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div x-data="{ open: false }" class="faq-item bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
+          <button @click="open = !open" class="w-full px-6 py-5 text-left focus:outline-none">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-medium text-white">Is it legal to download videos with ClickTube?</h3>
+              <svg class="w-5 h-5 text-purple-500 transform transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </button>
+          <div x-show="open" x-collapse class="px-6 pb-5 text-gray-400">
+            ClickTube is a tool, and like any tool, its legality depends on how you use it. We encourage users to respect copyright laws and only download content they have rights to or that is in the public domain.
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div x-data="{ open: false }" class="faq-item bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
+          <button @click="open = !open" class="w-full px-6 py-5 text-left focus:outline-none">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-medium text-white">How do I download videos in MP3 format?</h3>
+              <svg class="w-5 h-5 text-purple-500 transform transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </button>
+          <div x-show="open" x-collapse class="px-6 pb-5 text-gray-400">
+            After pasting your video URL, select the "MP3" option from the format dropdown menu. You can also choose different audio quality levels before downloading.
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div x-data="{ open: false }" class="faq-item bg-gray-800 border border-gray-700 rounded-xl overflow-hidden">
+          <button @click="open = !open" class="w-full px-6 py-5 text-left focus:outline-none">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-medium text-white">Why is my download slow?</h3>
+              <svg class="w-5 h-5 text-purple-500 transform transition-transform duration-200" :class="{ 'rotate-180':                 
 
 
 
+              open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </button>
+          <div x-show="open" x-collapse class="px-6 pb-5 text-gray-400">
+            Download speed depends on several factors including your internet connection, server load, and video quality. Try selecting a lower quality option or check your internet connection if downloads are consistently slow.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-
-<!-- Video download form -->
-<div class="max-w-2xl mx-auto mb-12">
-    <div class="relative">
-        <form action="ytdownload.php" method="post">
-            <!-- URL Input Field -->
-            <input type="text" name="video_url" placeholder="Enter YouTube/Instagram URL" required class="w-full bg-neutral-800 border border-neutral-700/30 rounded-lg py-4 px-6 text-white placeholder-neutral-400 focus:outline-none focus:border-purple-500 transition-colors"/>
-
-            <!-- Download Button -->
-            <button type="submit" name="submit" class="absolute right-2 top-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors">
-                Download
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-purple-900/30 to-pink-900/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl font-extrabold text-white sm:text-4xl slide-in">
+          <span class="block">Ready to Download</span>
+          <span class="block gradient-text">Your Videos?</span>
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300 sm:mt-4 fade-in">
+          Join millions of users who download videos with ClickTube every day
+        </p>
+        <!-- <div class="mt-8">
+          <form action="ytdownload.php" method="post" class="max-w-md mx-auto flex">
+            <input type="text" name="video_url" placeholder="Paste video URL here" required class="flex-grow px-5 py-4 rounded-l-lg bg-gray-800 border border-gray-700 focus:border-purple-500 focus:ring-purple-500 text-white placeholder-gray-400 transition">
+            <button type="submit" name="submit" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-4 rounded-r-lg font-medium hover:opacity-90 transition">
+              Download Now
             </button>
-        </form>
+          </form>
+        </div>
+      </div>
+    </div> -->
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Column 1 -->
+        <div>
+          <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">ClickTube</h3>
+          <div class="mt-4 space-y-4">
+            <a href="#home" class="text-base text-gray-300 hover:text-white block">Home</a>
+            <a href="#features" class="text-base text-gray-300 hover:text-white block">Features</a>
+            <a href="#how-it-works" class="text-base text-gray-300 hover:text-white block">How It Works</a>
+          </div>
+        </div>
+        
+        <!-- Column 2 -->
+        <div>
+          <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+          <div class="mt-4 space-y-4">
+            <a href="#" class="text-base text-gray-300 hover:text-white block">Terms</a>
+            <a href="#" class="text-base text-gray-300 hover:text-white block">Privacy</a>
+            <a href="#" class="text-base text-gray-300 hover:text-white block">Cookie Policy</a>
+          </div>
+        </div>
+        
+        <!-- Column 3 -->
+        <div>
+          <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
+          <div class="mt-4 space-y-4">
+            <a href="#" class="text-base text-gray-300 hover:text-white block">Help Center</a>
+            <a href="#" class="text-base text-gray-300 hover:text-white block">Contact Us</a>
+            <a href="#" class="text-base text-gray-300 hover:text-white block">Status</a>
+          </div>
+        </div>
+        
+        <!-- Column 4 -->
+        <div>
+          <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Connect</h3>
+          <div class="mt-4 flex space-x-6">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class='bx bxl-twitter text-xl'></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class='bx bxl-facebook text-xl'></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class='bx bxl-instagram text-xl'></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class='bx bxl-github text-xl'></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-12 pt-8 border-t border-gray-800">
+        <p class="text-base text-gray-400 text-center">
+          &copy; 2023 ClickTube. All rights reserved.
+        </p>
+      </div>
     </div>
-</div>
+  </footer>
 
+  <!-- Back to top button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 bg-purple-600 text-white p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300">
+    <i class='bx bx-chevron-up text-xl'></i>
+  </button>
 
+  <script>
+    // Back to top button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.remove('opacity-100', 'visible');
+        backToTopButton.classList.add('opacity-0', 'invisible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+  </script>
+  
 
-
-<!-- Platform Icons -->
-<div class="flex justify-center items-center space-x-8 mb-12">
-    <!-- YouTube -->
-    <a href="javascript:void(0);" class="text-center" onclick="window.location.href='index.html';">
-        <div class="w-12 h-12 bg-neutral-800 rounded-lg flex items-center justify-center text-purple-500 mb-2">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-            </svg>
-        </div>
-        <span class="text-sm text-neutral-400">YouTube</span>
-    </a>
-
-    <!-- Instagram -->
-    <a href="javascript:void(0);" class="text-center" onclick="window.location.href='instagram.html';">
-        <div class="w-12 h-12 bg-neutral-800 rounded-lg flex items-center justify-center text-purple-500 mb-2">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-        </div>
-        <span class="text-sm text-neutral-400">Instagram</span>
-    </a>
-
-    <!-- LinkedIn -->
-    <a href="javascript:void(0);" class="text-center" onclick="window.location.href='linkedin.html';">
-        <div class="w-12 h-12 bg-neutral-800 rounded-lg flex items-center justify-center text-purple-500 mb-2">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-            </svg>
-        </div>
-        <span class="text-sm text-neutral-400">LinkedIn</span>
-    </a>
-
-    <!-- Twitter -->
-    <a href="javascript:void(0);" class="text-center" onclick="window.location.href='twitter.html';">
-        <div class="w-12 h-12 bg-neutral-800 rounded-lg flex items-center justify-center text-purple-500 mb-2">
-            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-            </svg>
-        </div>
-        <span class="text-sm text-neutral-400">Twitter</span>
-    </a>
-</div>
-
-
-
-
-<section id="section-4ec6d4e5-e378-441b-8752-72920a061c89"><htmlCode>
-<section id="platform_support" class="py-20 bg-neutral-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Supported Platforms</h2>
-            <p class="text-neutral-400 max-w-2xl mx-auto">Download from all major social media platforms with just a few clicks. No quality loss, no watermarks.</p>
-        </div>
-
-        <!-- Platform Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- YouTube Card -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <div class="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-red-500" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                        </svg>
-                    </div>
-                    <span class="text-sm text-neutral-400">Most Popular</span>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-2">YouTube</h3>
-                <p class="text-neutral-400 text-sm mb-4">Videos, Shorts, Playlists</p>
-                <ul class="space-y-3">
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Up to 4K quality
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        MP3 conversion
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Subtitle download
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Instagram Card -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <div class="w-12 h-12 bg-pink-500/10 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-pink-500" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </div>
-                    <span class="text-sm text-neutral-400">Trending</span>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-2">Instagram</h3>
-                <p class="text-neutral-400 text-sm mb-4">Posts, Reels, Stories</p>
-                <ul class="space-y-3">
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        HD quality
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Story download
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Batch download
-                    </li>
-                </ul>
-            </div>
-
-            <!-- LinkedIn Card -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </div>
-                    <span class="text-sm text-neutral-400">Professional</span>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-2">LinkedIn</h3>
-                <p class="text-neutral-400 text-sm mb-4">Posts, Videos, Lives</p>
-                <ul class="space-y-3">
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Original quality
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Live recording
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Direct download
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Twitter Card -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <div class="w-12 h-12 bg-sky-500/10 rounded-lg flex items-center justify-center">
-                        <svg class="w-6 h-6 text-sky-500" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                        </svg>
-                    </div>
-                    <span class="text-sm text-neutral-400">Fast</span>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-2">Twitter</h3>
-                <p class="text-neutral-400 text-sm mb-4">Tweets, Clips, Spaces</p>
-                <ul class="space-y-3">
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        GIF support
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Space recording
-                    </li>
-                    <li class="flex items-center text-sm text-neutral-300">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Thread download
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-</htmlCode></section>
-<section id="section-a0d2e69c-45b6-4c50-877f-6a7f92af735e"><htmlCode>
-<section id="features_grid" class="py-20 bg-neutral-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Powerful Features</h2>
-            <p class="text-neutral-400 max-w-2xl mx-auto">Everything you need for seamless video downloads, all in one place.</p>
-        </div>
-
-        <!-- Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- High Quality -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-3">High Quality</h3>
-                <p class="text-neutral-400">Download videos in their highest quality, up to 4K resolution when available.</p>
-            </div>
-
-            <!-- Fast Processing -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-3">Fast Processing</h3>
-                <p class="text-neutral-400">Lightning-fast download speeds with optimized processing algorithms.</p>
-            </div>
-
-            <!-- Format Options -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-3">Format Options</h3>
-                <p class="text-neutral-400">Choose from multiple formats including MP4, MP3, and more.</p>
-            </div>
-
-            <!-- Privacy First -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-3">Privacy First</h3>
-                <p class="text-neutral-400">No tracking, no history, and secure HTTPS encryption for all downloads.</p>
-            </div>
-
-            <!-- Batch Download -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-3">Batch Download</h3>
-                <p class="text-neutral-400">Download multiple videos simultaneously to save time.</p>
-            </div>
-
-            <!-- No Watermarks -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-3">No Watermarks</h3>
-                <p class="text-neutral-400">Download videos in their original form without any additional branding.</p>
-            </div>
-        </div>
-
-        <!-- Feature Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16">
-            <div class="text-center">
-                <div class="text-3xl font-bold text-purple-500 mb-2">100M+</div>
-                <div class="text-sm text-neutral-400">Downloads</div>
-            </div>
-            <div class="text-center">
-                <div class="text-3xl font-bold text-purple-500 mb-2">99.9%</div>
-                <div class="text-sm text-neutral-400">Success Rate</div>
-            </div>
-            <div class="text-center">
-                <div class="text-3xl font-bold text-purple-500 mb-2">4K</div>
-                <div class="text-sm text-neutral-400">Max Quality</div>
-            </div>
-            <div class="text-center">
-                <div class="text-3xl font-bold text-purple-500 mb-2">24/7</div>
-                <div class="text-sm text-neutral-400">Support</div>
-            </div>
-        </div>
-    </div>
-</section>
-</htmlCode></section>
-<section id="section-1ea5fb40-f75b-430a-862f-91ba604feb7a"><htmlCode>
-<section id="how_it_works" class="py-20 bg-neutral-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">How It Works</h2>
-            <p class="text-neutral-400 max-w-2xl mx-auto">Download your favorite videos in just 4 simple steps</p>
-        </div>
-
-        <!-- Steps Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- Step 1 -->
-            <div class="relative">
-                <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 h-full hover:border-purple-500 transition-all">
-                    <div class="absolute -top-4 left-8 bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
-                        1
-                    </div>
-                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Copy URL</h3>
-                    <p class="text-neutral-400">Copy the video link from YouTube, Instagram, LinkedIn, or Twitter</p>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="relative">
-                <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 h-full hover:border-purple-500 transition-all">
-                    <div class="absolute -top-4 left-8 bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
-                        2
-                    </div>
-                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Paste URL</h3>
-                    <p class="text-neutral-400">Paste the copied URL into ClickTube search bar</p>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="relative">
-                <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 h-full hover:border-purple-500 transition-all">
-                    <div class="absolute -top-4 left-8 bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
-                        3
-                    </div>
-                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Choose Format</h3>
-                    <p class="text-neutral-400">Select your preferred quality and format options</p>
-                </div>
-            </div>
-
-            <!-- Step 4 -->
-            <div class="relative">
-                <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 h-full hover:border-purple-500 transition-all">
-                    <div class="absolute -top-4 left-8 bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
-                        4
-                    </div>
-                    <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Download</h3>
-                    <p class="text-neutral-400">Click download and save the video to your device</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Demo Video -->
-        <div class="mt-16 bg-neutral-800 border border-neutral-700/30 rounded-xl p-8">
-            <div class="text-center mb-8">
-                <h3 class="text-2xl font-semibold text-white mb-2">Watch How Easy It Is</h3>
-                <p class="text-neutral-400">See ClickTube in action with this quick demo</p>
-            </div>
-            <div class="aspect-w-16 aspect-h-9 bg-neutral-900 rounded-lg flex items-center justify-center">
-                <div class="text-neutral-400">
-                    <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <p>Demo Video Placeholder</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-</htmlCode></section>
-<section id="section-d23d040b-a463-4af8-8593-5f68ffed1beb"><htmlCode>
-<section id="quality_options" class="py-20 bg-neutral-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Quality Options</h2>
-            <p class="text-neutral-400 max-w-2xl mx-auto">Choose the perfect quality for your needs with our flexible download options</p>
-        </div>
-
-        <!-- Quality Options Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            <!-- 360p Option -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <span class="text-2xl font-bold text-white">360p</span>
-                    <span class="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm">Basic</span>
-                </div>
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Small file size
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Fast downloads
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Data-friendly
-                    </li>
-                </ul>
-                <div class="text-sm text-neutral-400">
-                    Average size: ~10MB/hour
-                </div>
-            </div>
-
-            <!-- 720p Option -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <span class="text-2xl font-bold text-white">720p</span>
-                    <span class="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm">HD</span>
-                </div>
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        HD quality
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Balanced size
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Most popular
-                    </li>
-                </ul>
-                <div class="text-sm text-neutral-400">
-                    Average size: ~25MB/hour
-                </div>
-            </div>
-
-            <!-- 1080p Option -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <span class="text-2xl font-bold text-white">1080p</span>
-                    <span class="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm">Full HD</span>
-                </div>
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Crystal clear
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Sharp details
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Premium quality
-                    </li>
-                </ul>
-                <div class="text-sm text-neutral-400">
-                    Average size: ~50MB/hour
-                </div>
-            </div>
-
-            <!-- 4K Option -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-6 hover:border-purple-500 transition-all">
-                <div class="flex items-center justify-between mb-6">
-                    <span class="text-2xl font-bold text-white">4K</span>
-                    <span class="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm">Ultra HD</span>
-                </div>
-                <ul class="space-y-3 mb-6">
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Ultra HD quality
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Maximum detail
-                    </li>
-                    <li class="flex items-center text-neutral-400">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Professional use
-                    </li>
-                </ul>
-                <div class="text-sm text-neutral-400">
-                    Average size: ~100MB/hour
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Options -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8">
-                <h3 class="text-xl font-semibold text-white mb-4">Audio Options</h3>
-                <div class="space-y-4">
-                    <label class="flex items-center space-x-3">
-                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-500 rounded border-neutral-600"/>
-                        <span class="text-neutral-400">Download with audio (MP4)</span>
-                    </label>
-                    <label class="flex items-center space-x-3">
-                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-500 rounded border-neutral-600"/>
-                        <span class="text-neutral-400">Audio only (MP3)</span>
-                    </label>
-                    <label class="flex items-center space-x-3">
-                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-500 rounded border-neutral-600"/>
-                        <span class="text-neutral-400">High quality audio (320kbps)</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8">
-                <h3 class="text-xl font-semibold text-white mb-4">Additional Features</h3>
-                <div class="space-y-4">
-                    <label class="flex items-center space-x-3">
-                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-500 rounded border-neutral-600"/>
-                        <span class="text-neutral-400">Download subtitles</span>
-                    </label>
-                    <label class="flex items-center space-x-3">
-                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-500 rounded border-neutral-600"/>
-                        <span class="text-neutral-400">Thumbnail download</span>
-                    </label>
-                    <label class="flex items-center space-x-3">
-                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-500 rounded border-neutral-600"/>
-                        <span class="text-neutral-400">Auto-quality selection</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-</htmlCode></section>
-<section id="section-25637530-a6c7-456e-96ba-db7cb558ba48"><htmlCode>
-<section id="faq" class="py-20 bg-neutral-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
-            <p class="text-neutral-400 max-w-2xl mx-auto">Find answers to common questions about ClickTube</p>
-        </div>
-
-        <!-- FAQ Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <!-- FAQ Item 1 -->
-            <div x-data="{ open: false }" class="bg-neutral-800 border border-neutral-700/30 rounded-xl">
-                <button 
-                    @click="open = !open" 
-                    class="flex items-center justify-between w-full p-6 text-left"
-                >
-                    <h3 class="text-lg font-semibold text-white">Is ClickTube completely free?</h3>
-                    <svg 
-                        class="w-5 h-5 text-purple-500 transform transition-transform duration-200" 
-                        :class="{'rotate-180': open}"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div 
-                    x-show="open" 
-                    x-collapse
-                    class="px-6 pb-6 text-neutral-400"
-                >
-                    Yes, ClickTube is completely free to use. There are no hidden fees or subscriptions required. You can download unlimited videos at no cost.
-                </div>
-            </div>
-
-            <!-- FAQ Item 2 -->
-            <div x-data="{ open: false }" class="bg-neutral-800 border border-neutral-700/30 rounded-xl">
-                <button 
-                    @click="open = !open" 
-                    class="flex items-center justify-between w-full p-6 text-left"
-                >
-                    <h3 class="text-lg font-semibold text-white">What platforms are supported?</h3>
-                    <svg 
-                        class="w-5 h-5 text-purple-500 transform transition-transform duration-200" 
-                        :class="{'rotate-180': open}"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div 
-                    x-show="open" 
-                    x-collapse
-                    class="px-6 pb-6 text-neutral-400"
-                >
-                ClickTube supports YouTube, Instagram, LinkedIn, and Twitter. You can download videos, reels, stories, and more from these platforms.
-                </div>
-            </div>
-
-            <!-- FAQ Item 3 -->
-            <div x-data="{ open: false }" class="bg-neutral-800 border border-neutral-700/30 rounded-xl">
-                <button 
-                    @click="open = !open" 
-                    class="flex items-center justify-between w-full p-6 text-left"
-                >
-                    <h3 class="text-lg font-semibold text-white">Is it safe to use ClickTube?</h3>
-                    <svg 
-                        class="w-5 h-5 text-purple-500 transform transition-transform duration-200" 
-                        :class="{'rotate-180': open}"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div 
-                    x-show="open" 
-                    x-collapse
-                    class="px-6 pb-6 text-neutral-400"
-                >
-                    Yes, ClickTube is completely safe. We use secure HTTPS encryption and don't store any personal data or download history.
-                </div>
-            </div>
-
-            <!-- FAQ Item 4 -->
-            <div x-data="{ open: false }" class="bg-neutral-800 border border-neutral-700/30 rounded-xl">
-                <button 
-                    @click="open = !open" 
-                    class="flex items-center justify-between w-full p-6 text-left"
-                >
-                    <h3 class="text-lg font-semibold text-white">What's the highest quality available?</h3>
-                    <svg 
-                        class="w-5 h-5 text-purple-500 transform transition-transform duration-200" 
-                        :class="{'rotate-180': open}"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div 
-                    x-show="open" 
-                    x-collapse
-                    class="px-6 pb-6 text-neutral-400"
-                >
-                ClickTube supports downloads up to 4K quality when available from the source. You can choose between 360p, 720p, 1080p, and 4K options.
-                </div>
-            </div>
-
-            <!-- FAQ Item 5 -->
-            <div x-data="{ open: false }" class="bg-neutral-800 border border-neutral-700/30 rounded-xl">
-                <button 
-                    @click="open = !open" 
-                    class="flex items-center justify-between w-full p-6 text-left"
-                >
-                    <h3 class="text-lg font-semibold text-white">Can I download multiple videos at once?</h3>
-                    <svg 
-                        class="w-5 h-5 text-purple-500 transform transition-transform duration-200" 
-                        :class="{'rotate-180': open}"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div 
-                    x-show="open" 
-                    x-collapse
-                    class="px-6 pb-6 text-neutral-400"
-                >
-                    Yes, ClickTube supports batch downloading. You can queue multiple videos and download them simultaneously.
-                </div>
-            </div>
-
-            <!-- FAQ Item 6 -->
-            <div x-data="{ open: false }" class="bg-neutral-800 border border-neutral-700/30 rounded-xl">
-                <button 
-                    @click="open = !open" 
-                    class="flex items-center justify-between w-full p-6 text-left"
-                >
-                    <h3 class="text-lg font-semibold text-white">Do you offer customer support?</h3>
-                    <svg 
-                        class="w-5 h-5 text-purple-500 transform transition-transform duration-200" 
-                        :class="{'rotate-180': open}"
-                        fill="none" 
-                        stroke="currentColor" 
-                        viewBox="0 0 24 24"
-                    >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-                <div 
-                    x-show="open" 
-                    x-collapse
-                    class="px-6 pb-6 text-neutral-400"
-                >
-                    Yes, we offer 24/7 customer support. Our dedicated help desk is always available to assist you with any issues or questions.
-                </div>
-            </div>
-        </div>
-
-        <!-- Support CTA -->
-        <div class="mt-16 text-center">
-            <p class="text-neutral-400 mb-4">Still have questions?</p>
-            <button class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors">
-                Contact Support
-            </button>
-        </div>
-    </div>
-</section>
-</htmlCode></section>
-<section id="section-9bfe7f74-77b5-49a4-b399-6db5770430c4"><htmlCode>
-<section id="privacy_security" class="py-20 bg-neutral-900">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Privacy & Security</h2>
-            <p class="text-neutral-400 max-w-2xl mx-auto">Your privacy and security are our top priorities</p>
-        </div>
-
-        <!-- Security Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <!-- Data Privacy -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-4">Data Privacy</h3>
-                <ul class="space-y-3 text-neutral-400">
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        No data collection
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        No download history
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Anonymous downloads
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Secure Downloads -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-4">Secure Downloads</h3>
-                <ul class="space-y-3 text-neutral-400">
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        HTTPS encryption
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Secure connection
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Safe downloads
-                    </li>
-                </ul>
-            </div>
-
-            <!-- No Tracking -->
-            <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 hover:border-purple-500 transition-all">
-                <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
-                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
-                    </svg>
-                </div>
-                <h3 class="text-xl font-semibold text-white mb-4">No Tracking</h3>
-                <ul class="space-y-3 text-neutral-400">
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        No cookies used
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        No analytics
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-purple-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
-                        Complete privacy
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Security Commitment -->
-        <div class="bg-neutral-800 border border-neutral-700/30 rounded-xl p-8 text-center">
-            <h3 class="text-2xl font-semibold text-white mb-4">Our Security Commitment</h3>
-            <p class="text-neutral-400 max-w-3xl mx-auto mb-8">
-                At ClickTube, we believe in absolute privacy and security. We don't store your data, track your activities, or maintain any download history. Your downloads are completely anonymous and secure.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="flex items-center space-x-2 text-neutral-400">
-                    <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                    </svg>
-                    <span>SSL Secured</span>
-                </div>
-                <div class="flex items-center space-x-2 text-neutral-400">
-                    <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
-                    <span>Privacy First</span>
-                </div>
-                <div class="flex items-center space-x-2 text-neutral-400">
-                    <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
-                    </svg>
-                    <span>No Tracking</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-</htmlCode></section>
-<section id="section-41695d6b-4897-4c3c-886a-8e54da95090d"><htmlCode>
-<div id="root">
-    <footer id="footer" class="bg-neutral-900 border-t border-neutral-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <!-- Top Section -->
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <!-- Brand Section -->
-                <div class="col-span-1">
-                    <h3 class="text-white text-xl font-bold mb-4">ClickTube</h3>
-                    <p class="text-neutral-400 text-sm">Your ultimate platform for downloading videos from popular social media platforms, designed for simplicity and speed.</p>
-                </div>
-
-                <!-- ClickTube Links -->
-                <div class="col-span-1">
-                    <h4 class="text-white font-semibold mb-4">ClickTube Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">Home</a></li>
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">Features</a></li>
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">How It Works</a></li>
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">Support</a></li>
-                    </ul>
-                </div>
-
-                <!-- Supported Platforms -->
-                <div class="col-span-1">
-                    <h4 class="text-white font-semibold mb-4">Supported Platforms</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">YouTube</a></li>
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">Instagram</a></li>
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">LinkedIn</a></li>
-                        <li><a href="#" class="text-neutral-400 hover:text-white transition-colors duration-300">Twitter</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div class="col-span-1">
-                    <h4 class="text-white font-semibold mb-4">Contact Us</h4>
-                    <ul class="space-y-2">
-                        <li class="text-neutral-400">support@ClickTube.com</li>
-                        <li class="text-neutral-400">24/7 Help Desk Available</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="border-t border-neutral-800 my-8"></div>
-
-            <!-- Bottom Section -->
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                <!-- Copyright -->
-                <div class="text-neutral-400 text-sm">
-                    © 2024 ClickTube. All rights reserved.
-                </div>
-
-                <!-- Legal Links -->
-                <div class="flex space-x-6">
-                    <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
-                    <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-300">Terms of Service</a>
-                    <a href="#" class="text-neutral-400 hover:text-white text-sm transition-colors duration-300">Cookie Policy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
-</htmlCode></section>
 </body>
 </html>
